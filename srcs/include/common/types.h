@@ -4,6 +4,12 @@
 #include <stdint.h>
 #include <string>
 
+/**
+ * @brief CFA: Color Filter Array，色彩滤镜阵列。
+ * 是一种排列在图像传感器上的颜色滤镜阵列，用于捕获不同颜色的光。
+ * 通常，每个像素只能感知红、绿、蓝中的一种颜色，然后通过插值计算得出其他颜色。
+ * 
+ */
 enum class CfaTypes
 {
     RGGB,
@@ -14,6 +20,12 @@ enum class CfaTypes
     CFA_MAX
 };
 
+/**
+ * @brief 
+ * Bayer滤波器在其2x2的阵列中包含一种红色滤镜（R）、一种蓝色滤镜（B）和两种绿色滤镜（GB，GR）
+ * 其中的绿色滤镜在这里被表示为GB和GR，是用于区别两个G滤镜（也就是说两个G滤镜需要做的处理应该不一样，因此才加以区分？）
+ * 
+ */
 enum class PixelCfaTypes
 {
     GR,
@@ -98,6 +110,7 @@ struct ImageMem
     // void *y_log_f32_;
 };
 
+// 把阵列排布通过数组形式写出来，很聪明
 static constexpr int kCfaNums = static_cast<int>(CfaTypes::CFA_MAX);
 static constexpr PixelCfaTypes kPixelCfaLut[kCfaNums][2][2] = {
     {

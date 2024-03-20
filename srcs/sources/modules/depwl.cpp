@@ -2,6 +2,10 @@
  * @file depwl.cpp
  * @author joker.mao (joker_mao@163.com)
  * @brief decode pwl curve
+ *        事实上就是把分段函数代入进去，不过uint16转换为了int32。
+ *        分段函数在json文件里有定义（可能相机拍的的raw文件里也会有？）
+* TODO:   为什么要转换成有符号数？按道理到这一步为止，应该都大于0呀？
+          是不是说，既然要转数据类型，不如一步到位转到int32，省得后面再转一次了？
  * @version 0.1
  * @date 2023-07-27
  * Copyright (c) of ADAS_EYES 2023

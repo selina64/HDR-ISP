@@ -2,6 +2,7 @@
  * @file blc.cpp
  * @author joker.mao (joker_mao@163.com)
  * @brief black level correct
+ *          做法很简单，每个像素均减去一个偏置。
  * @version 0.1
  * @date 2023-07-27
  * @copyright Copyright (c) 2023

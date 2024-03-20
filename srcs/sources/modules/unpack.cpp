@@ -1,7 +1,13 @@
 /**
  * @file raw_unpack.cpp
  * @author joker.mao (joker_mao@163.com)
- * @brief
+ * @brief  
+ *       看起来mipi协议的RAW10中每连续10位表示一个像素，RAW12就是12位。解码就是从int10->int16
+ * 
+ * TODO: 寻找mipi协议官方原文
+ * TODO: 其实mipi接收的时候物理层应该也可以处理，现实中是不是并不会用到这样的软件处理？
+ *       否则能想到的极端情况是：多个传感器同时传输图像回来，但是处理器的内存不足以同时存放多个传感器的数据，但是这样就太不匹配了。
+ * 
  * @version 0.1
  * @date 2023-07-27
  *

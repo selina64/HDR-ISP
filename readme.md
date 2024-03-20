@@ -5,6 +5,7 @@
 
 # Project Description
 
+Forked from JokerEyeAdas/HDR-ISP. I fork this repository for learning use, so I'm trying to add comments on the code, from the view of a beginner learner of ISP.
 
 **An ISP pipeline written in C++ for HDR cameras**
 
@@ -20,13 +21,22 @@
 
 - Raw Domain
     - [x] MipiUnPack: mipi raw data unpack to raw16
+        - 解析数据
+        - Mipi（Mobile Industry Processor Interface）：是一种移动端数据传输接口，图像传输是其中的一部分，在手机等移动设备中常见。
     - [x] DePwl: decode the pwl curve
+        - PWL（PieceWise Linear）：PWL是一种压缩/解压缩方式，提高存储密度和传输效率。
     - [x] Dpc: dynamic pixel correct
-    - [x] Lsc: lens shding correct
+        - 坏点校正：去除异常坏点
+    - [x] Lsc: lens shading correct
+        - 暗角校正：去除四周的暗角
     - [x] Blc: black level correct
+        - 黑阶校正：类似于抑制零飘
     - [ ] Rns: raw noise filter
+        - 本项目未实现
     - [x] WbGain: white balance gain
+        - 白平衡增益：若在6500K光照下，白色的图像拍摄为白色。
     - [x] Demoasic: change raw to rgb
+        - 去马赛克：从每个像素只有一个通道（RGB其中之一），转换到每个像素都有RGB三通道的图像。
 - RGB Domain
     - [x] Ltm: local tone mapping
     - [x] RgbGamma: rgb gamma curve

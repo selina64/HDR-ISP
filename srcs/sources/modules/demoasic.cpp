@@ -2,6 +2,11 @@
  * @file demoasic.cpp
  * @author joker.mao (joker_mao@163.com)
  * @brief demoasic
+ * 
+ *          从每个像素只有一个通道（RGB其中之一），转换到每个像素都有RGB三通道的图像。
+ *          依赖的是插值处理。把周围的别的通道的像素插值到本像素来补充通道信息。
+ *          插值前后的尺寸变化是[w*h*1] -> [w*h*3]
+ * 
  * @version 0.1
  * @date 2023-07-27
  * Copyright (c) of ADAS_EYES 2023
@@ -55,10 +60,13 @@ static int Demoasic(Frame *frame, const IspPrms *isp_prm)
             int cfa_id = static_cast<int>(frame->info.cfa);
             switch (kPixelCfaLut[cfa_id][w % 2][h % 2])
             {
-            case PixelCfaTypes::R:
-                bgr_out[pixel_idx * 3 + 0] = (p0 + p2 + p6 + p8) >> 2; // B
-                bgr_out[pixel_idx * 3 + 1] = (p1 + p3 + p5 + p7) >> 2; // G
-                bgr_out[pixel_idx * 3 + 2] = p4;                       // R
+            case PixelCfaTypes::R: // 如果这个像素在raw中是红色通道
+                // B 是由周围的B插值出来的（>>2相当于除以4）（左上左下，右上右下）
+                bgr_out[pixel_idx * 3 + 0] = (p0 + p2 + p6 + p8) >> 2;
+                // G 是由周围的G插值出来的（上下左右）
+                bgr_out[pixel_idx * 3 + 1] = (p1 + p3 + p5 + p7) >> 2;
+                // R 就是这个通道本身
+                bgr_out[pixel_idx * 3 + 2] = p4;
                 break;
             case PixelCfaTypes::GR:
                 bgr_out[pixel_idx * 3 + 0] = (p3 + p5) >> 1;
