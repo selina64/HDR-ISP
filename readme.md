@@ -39,13 +39,25 @@ Forked from JokerEyeAdas/HDR-ISP. I fork this repository for learning use, so I'
         - 去马赛克：从每个像素只有一个通道（RGB其中之一），转换到每个像素都有RGB三通道的图像。
 - RGB Domain
     - [x] Ltm: local tone mapping
+        - 局部色调调整 ：这是图像处理中的一种技术，主要用于高动态范围(HDR)图像的处理，使其能够在低动态范围(LDR)的显示设备上正确地显示。
+        具体来说，色调映射算法的主要目标是将捕获的真实世界的广泛亮度范围压缩到可由我们的眼睛接受或显示设备显示的范围。局部色调映射则是色调映射的一种类型，它考虑到图像的局部特性来进行映射。与全局色调映射（整个图像采用同一种映射策略）不同，局部色调映射根据图像的局部特征，比如亮度、对比度等，采取不同的映射策略。这样可以更好地保持图像的细节和对比度，对于提高图像的视觉效果有很大的帮助。
+        - 看上去有点复杂，先跳过看看
     - [x] RgbGamma: rgb gamma curve
+        - 一种亮度校正：把亮部的对比度降低，暗部对比度提高
     - [x] Ccm: color correct matrix
+        - 颜色校正矩阵（Color Correction Matrix，简称CCM）的主要作用是进行颜色的校正和转换。CCM主要由一个3x3的矩阵组成，通常用于将原始图像数据（通常是RGB颜色空间）转换成另一个颜色空间。
+        - 在摄像头ISP流程中，由于不同的镜头和传感器对颜色的响应不同，直接得到的图像可能颜色偏移，所以我们需要用CCM来进行颜色校正，以得到符合人眼视觉体验的颜色表现。
+        - 在实际应用中，CCM的确定通常需要通过拍摄色卡（包含多种颜色的目标）来得到。
     - [x] Rgb2Yuv: rgb domain to yuv domain
+        - 色彩空间转换
 - YUV Domain
+    - yuv：“Y”表示明亮度（Luminance、Luma），“U”和“V”则是色度、浓度（Chrominance、Chroma）
     - [x] YGamma: gray gamma curve
+        - 和RGB GAMMA操作基本一样，但是仅针对y通道
     - [x] Contrast: gray contrast adjust
+        - y通道以127为中心，上下缩放
     - [x] Sharpen: gray usm sharpen
+        - 
     - [x] Cns: chrome noise filter
     - [x] Saturation: chrome saturation
     - [x] Yuv2Rgb: yuv domain to rgb domain
