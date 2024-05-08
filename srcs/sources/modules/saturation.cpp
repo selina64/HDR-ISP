@@ -2,6 +2,11 @@
  * @file saturation.cpp
  * @author joker.mao (joker_mao@163.com)
  * @brief
+ *          TODO: 此文件对uv通道作绕原点的旋转，应该是色相调整，而非饱和度。
+ *                  https://en.wikipedia.org/wiki/Color_wheel#/media/File:Linear_RGB_color_wheel.png
+ *          饱和度的调整应该是在uv平面上做放缩，见博客
+ *                  https://blog.csdn.net/lz0499/article/details/101013338
+ *          
  * @version 0.1
  * @date 2023-07-27
  *
